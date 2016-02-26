@@ -1,6 +1,6 @@
 # Jepsar PrimeFaces Theme
 
-Having worked with PrimeFaces for a while I'm increasingly annoiyed by it's themes:
+Having worked with PrimeFaces for a while I'm increasingly annoiyed by it's community themes:
 
 * They look outdated
 * The CSS is overly complicated
@@ -9,50 +9,52 @@ Having worked with PrimeFaces for a while I'm increasingly annoiyed by it's them
 So I decided to create my own theme. While doing so I also came up with a resource handler which you can use to patch
 existing themes to replace the jQuery UI icons with [Font Awesome](https://fortawesome.github.io/Font-Awesome/) icons.
 
-## `FontAwesomeResourceHandler`
+## Installing
 
-This resource handler will strip the jQuery UI icons from the standard PrimeFaces themes and adds FontAwesome rules to
-the theme. You can use it on existing applications without needing to convert all XHTML (for example `ui-icon-gear` to
-`fa fa-cog`). The injected CSS will take care of that.
+Make sure you've set the FontAwesome context parameter in the `web.xml`:
+
+````xml
+<context-param>
+	<param-name>primefaces.FONT_AWESOME</param-name>
+	<param-value>true</param-value>
+</context-param>
+````
 
 My next to do is getting this library in the Maven central repository. Until it's there you could download and install
 it to your local repository (`mvn clean install`). Then you can add this dependency to your `pom.xml`:
 
 ````xml
-		<dependency>
-			<groupId>org.jepsar</groupId>
-			<artifactId>primefaces-theme-jepsar</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
+<dependency>
+	<groupId>org.jepsar</groupId>
+	<artifactId>primefaces-theme-jepsar</artifactId>
+	<version>1.0-SNAPSHOT</version>
+</dependency>
 ````
 
-To use the handler, simply turn on FontAwesome in the `web.xml`:
+### `FontAwesomeResourceHandler`
 
-````xml
-	<context-param>
-		<param-name>primefaces.FONT_AWESOME</param-name>
-		<param-value>true</param-value>
-	</context-param>
-````
+This resource handler will strip the jQuery UI icons from the community PrimeFaces themes and adds FontAwesome rules to
+the theme. You can use it on existing applications without needing to convert all XHTML (for example `ui-icon-gear` to
+`fa fa-cog`). The injected CSS will take care of that.
 
 Then, in the `faces-config.xml`, add the handler:
 
 ````xml
-	<application>
-		<resource-handler>org.jepsar.primefaces.theme.jepsar.FontAwesomeResourceHandler</resource-handler>
-	</application>
+<application>
+	<resource-handler>org.jepsar.primefaces.theme.jepsar.FontAwesomeResourceHandler</resource-handler>
+</application>
 ````
 
 You're done. But wait, maybe you need some custom styling? You can append custom CSS to the PrimeFaces
-theme by adding a context parameter in the `web.xml`:
+community theme by adding a context parameter in the `web.xml`:
 
 ````xml
-	<context-param>
-		<param-name>org.jepsar.primefaces.theme.APPEND_CSS_FILE</param-name>
-		<param-value>/your/custom.css</param-value>
-	</context-param>
+<context-param>
+	<param-name>org.jepsar.primefaces.theme.APPEND_CSS_FILE</param-name>
+	<param-value>/your/custom.css</param-value>
+</context-param>
 ````
 
-## Theme
+### Theme
 
 The theme is still work in progress. At this moment it is not ready to share yet, but it will come soon.
