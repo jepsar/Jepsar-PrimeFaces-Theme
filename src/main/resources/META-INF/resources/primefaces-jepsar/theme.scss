@@ -1,1 +1,130 @@
-/* Coming soon */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic);
+
+// Palette URL: http://paletton.com/#uid=73t1z0kw0w0jyC+oRxVy4oIDfjr */
+
+$color-primary-0: #086CA2;	// Main Primary color */
+$color-primary-1: #4E94B9;
+$color-primary-2: #2C7CA7;
+$color-primary-3: #06537D;
+$color-primary-4: #044162;
+
+$color-secondary-1-0: #B90091;	// Main Secondary color (1) */
+$color-secondary-1-1: #CB4FB0;
+$color-secondary-1-2: #BE2A9D;
+$color-secondary-1-3: #8F0070;
+$color-secondary-1-4: #710058;
+
+$color-complement-0: #FF8B00;	// Main Complement color */
+$color-complement-1: #FFB863;
+$color-complement-2: #FFA539;
+$color-complement-3: #C56B00;
+$color-complement-4: #9B5400;
+
+
+$colorsBody: $color-primary-4, #fff;
+$colorLink: $color-secondary-1-0;
+$colorLinkVisited: $color-secondary-1-4;
+$colorPanel: #f8f8f8;
+$colorsPrimary: #fff, $color-primary-0;
+$colorsSecondary: #fff, $color-secondary-1-0;
+$colorsComplementary: #fff, $color-complement-0;
+$borderRadiusNone: 0;
+$borderRadius: unset;
+$inputButtonHeight: 2em;
+
+
+@mixin colors($text, $background)
+{
+  color: $text;
+  background-color: $background;
+}
+
+@mixin borderRadius($radius)
+{
+	border-radius: $radius;
+}
+
+@mixin border($color)
+{
+	border: 1px solid $color;
+}
+
+@mixin clickable()
+{
+	cursor: pointer;
+}
+
+
+body { @include colors($colorsBody...); line-height: 1.5em; }
+body, input, button { font-family: Roboto, sans-serif; font-size: 1em; }
+a { color: $colorLink; }
+a:visited { color: $colorLinkVisited; }
+
+html .ui-corner-all { @include borderRadius($borderRadiusNone); }
+html .ui-shadow { box-shadow: 0 0 8px rgba(0,0,0,.4); }
+
+html .ui-state-disabled { opacity: .25; }
+html .ui-state-focus { box-shadow: 0px 0px 4px $color-secondary-1-0; }
+
+
+html .ui-inputfield {
+	height: $inputButtonHeight;
+	color: nth($colorsBody, 1); @include border($color-primary-1); box-sizing: border-box;
+}
+html .ui-inputfield::-webkit-input-placeholder { color: $color-primary-1; }
+
+
+// Calendar */
+.ui-datepicker-trigger { height: $inputButtonHeight; }
+.ui-datepicker { background: $colorPanel; }
+html .ui-datepicker .ui-datepicker-prev,
+html .ui-datepicker .ui-datepicker-next { font-family: FontAwesome; text-align: center; @include clickable(); }
+html .ui-datepicker .ui-datepicker-prev:before { content: '\f0d9'; }
+html .ui-datepicker .ui-datepicker-next:before { content: '\f0da'; }
+html .ui-datepicker .ui-datepicker-prev span,
+html .ui-datepicker .ui-datepicker-next span { display: none; }
+html .ui-datepicker .ui-datepicker-prev-hover { top: 2px; left: 2px; }
+html .ui-datepicker .ui-datepicker-next-hover { top: 2px; right: 2px; }
+
+
+// Checkbox and radio */
+$radioCheckSize: 1.2em;
+html .ui-chkbox .ui-chkbox-box, html .ui-radiobutton .ui-radiobutton-box {
+	width: $radioCheckSize; height: $radioCheckSize; text-align: center;
+	@include colors($colorsPrimary...);
+	@include clickable();
+
+	.ui-icon { line-height: $radioCheckSize; width: 100%; height: 100%; }
+}
+html .ui-chkbox .ui-chkbox-box {
+	@include borderRadius($borderRadiusNone);
+}
+html .ui-radiobutton .ui-radiobutton-box {
+	@include borderRadius($radioCheckSize);
+}
+html .ui-chkbox .ui-chkbox-box, html .ui-radiobutton .ui-radiobutton-box {
+	span:before { display: block; }
+}
+html .ui-radiobutton-icon { margin: 0; }
+
+
+html .ui-button {
+	margin: 0; height: $inputButtonHeight; @include colors($colorsPrimary...); border: 0;
+}
+.ui-button.secondary { @include colors($colorsSecondary...); }
+.ui-button.complementary { @include colors($colorsComplementary...); }
+html .ui-button-icon-only .ui-icon {
+	line-height: $inputButtonHeight; position: absolute; left: 0; top: 0; margin: 0; width: 100%; text-align: center;
+}
+
+
+// Icons */
+html .ui-icon { text-indent: 0; }
+.ui-icon:before { font-family: FontAwesome; }
+
+.ui-icon-blank:before { content: '\f00c'; opacity: 0; }
+.ui-icon-check:before { content: '\f00c'; }
+.ui-icon-bullet:before { content: '\f00c'; }
+.ui-icon-calendar:before { content: '\f133'; }
+.ui-icon-circle-triangle-w:before { content: '\f0d9'; }
+.ui-icon-circle-triangle-e:before { content: '\f0da'; }
