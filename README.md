@@ -56,6 +56,28 @@ parameter in the `web.xml`:
 </context-param>
 ````
 
+### `NoThemeResourceHandler`
+
+If you want to replace the PrimeFaces theme with your own CSS, but don't want to build a theme JAR you can use this
+resource handler in combination with the custom CSS resource contect parameter.
+
+Add the handler in the `faces-config.xml`:
+
+````xml
+<application>
+	<resource-handler>org.jepsar.primefaces.theme.jepsar.NoThemeResourceHandler</resource-handler>
+</application>
+````
+
+And the context parameter in the `web.xml`:
+
+````xml
+<context-param>
+	<param-name>org.jepsar.primefaces.theme.APPEND_CSS_RESOURCE</param-name>
+	<param-value>custom.css</param-value>
+</context-param>
+````
+
 ### Theme
 
 The theme is still work in progress. At this moment it is not ready to share yet, but it will come soon.
