@@ -59,7 +59,7 @@ parameter in the `web.xml`:
 ### `NoThemeResourceHandler`
 
 If you want to replace the PrimeFaces theme with your own CSS, but don't want to build a theme JAR you can use this
-resource handler in combination with the custom CSS resource contect parameter.
+resource handler in combination with the custom CSS resource context parameter.
 
 Add the handler in the `faces-config.xml`:
 
