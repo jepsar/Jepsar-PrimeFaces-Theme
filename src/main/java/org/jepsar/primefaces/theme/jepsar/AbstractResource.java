@@ -1,18 +1,16 @@
 package org.jepsar.primefaces.theme.jepsar;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import javax.faces.application.Resource;
+import javax.faces.application.ResourceHandler;
 import javax.faces.application.ResourceWrapper;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
 
 
 /**
@@ -24,9 +22,9 @@ public abstract class AbstractResource extends ResourceWrapper
 {
 
 	/**
-	 * The context parameter name for getting the CSS file to append.
+	 * The context parameter name for getting the CSS resource to append.
 	 */
-	public static final String PARAM_NAME_APPEND_CSS_FILE = "org.jepsar.primefaces.theme.APPEND_CSS_FILE";
+	public static final String PARAM_NAME_APPEND_CSS_RESOURCE = "org.jepsar.primefaces.theme.APPEND_CSS_RESOURCE";
 
 	/**
 	 * Input stream reader buffer size.
@@ -39,27 +37,34 @@ public abstract class AbstractResource extends ResourceWrapper
 	private final Resource wrapped;
 
 	/**
+	 * Handler that created this resource.
+	 */
+	private final ResourceHandler handler;
+
+	/**
 	 * Response encoding charset.
 	 */
 	private final Charset charset;
 
 	/**
-	 * Location of the CSS file to append.
+	 * Name of the CSS resource to append.
 	 */
-	private final String appendCssFile;
+	private final String appendCssResource;
 
 
 	/**
-	 * Wraps the resource and sets {@link #charset} and {@link #appendCssFile}.
+	 * Wraps the resource and sets {@link #charset} and {@link #appendCssResource}.
 	 *
 	 * @param wrapped Wrapped resource.
+	 * @param handler Handler that created this resource.
 	 */
-	public AbstractResource(Resource wrapped)
+	public AbstractResource(Resource wrapped, ResourceHandler handler)
 	{
 		this.wrapped = wrapped;
+		this.handler = handler;
 		String charEncoding = FacesContext.getCurrentInstance().getExternalContext().getResponseCharacterEncoding();
 		this.charset = Charset.forName(charEncoding);
-		this.appendCssFile = getInitParameter(FacesContext.getCurrentInstance(), PARAM_NAME_APPEND_CSS_FILE);
+		this.appendCssResource = getInitParameter(FacesContext.getCurrentInstance(), PARAM_NAME_APPEND_CSS_RESOURCE);
 	}
 
 
@@ -119,24 +124,6 @@ public abstract class AbstractResource extends ResourceWrapper
 
 
 	/**
-	 * Reads the data from a file in the webapp folder using {@link StandardCharsets#UTF_8}.
-	 *
-	 * @param fileLocation
-	 *
-	 * @return Data read from file at the given location.
-	 *
-	 * @throws IOException
-	 */
-	protected String readWebappFile(final String fileLocation) throws IOException
-	{
-		ServletContext context = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-		String root = context.getRealPath("/");
-		File webappFile = new File(root + fileLocation);
-		return new String(Files.readAllBytes(webappFile.toPath()), StandardCharsets.UTF_8);
-	}
-
-
-	/**
 	 * Return the value of the specified application initialization parameter (if any).
 	 *
 	 * @param context Faces context
@@ -163,6 +150,17 @@ public abstract class AbstractResource extends ResourceWrapper
 
 
 	/**
+	 * Return the {@link #handler handler that created this resource}.
+	 *
+	 * @return {@link #handler}.
+	 */
+	public ResourceHandler getHandler()
+	{
+		return handler;
+	}
+
+
+	/**
 	 * Returns {@link #charset}.
 	 *
 	 * @return {@link #charset}.
@@ -174,13 +172,13 @@ public abstract class AbstractResource extends ResourceWrapper
 
 
 	/**
-	 * Returns {@link #appendCssFile}.
+	 * Returns {@link #appendCssResource name of the CSS resource to append}.
 	 *
-	 * @return {@link #appendCssFile}.
+	 * @return {@link #appendCssResource}.
 	 */
-	public String getAppendCssFile()
+	public String getAppendCssResource()
 	{
-		return appendCssFile;
+		return appendCssResource;
 	}
 
 }

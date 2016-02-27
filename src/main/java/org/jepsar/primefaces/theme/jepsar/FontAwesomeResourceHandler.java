@@ -41,7 +41,7 @@ public class FontAwesomeResourceHandler extends AbstractResourceHandler
 	{
 		Resource resource = super.createResource(resourceName, libraryName);
 		if (isPrimeFacesTheme(resourceName, libraryName)) {
-			return new FontAwesomeResource(resource);
+			return new FontAwesomeResource(resource, this);
 		}
 		else {
 			return getWrapped().createResource(resourceName, libraryName);

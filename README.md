@@ -1,13 +1,14 @@
 # Jepsar PrimeFaces Theme
 
-Having worked with PrimeFaces for a while I'm increasingly annoiyed by it's community themes:
+Having worked with [PrimeFaces](http://primefaces.org/) for a while I'm increasingly annoiyed by it's community themes:
 
 * They look outdated
 * The CSS is overly complicated
 * The icons are bitmaps
 
 So I decided to create my own theme. While doing so I also came up with a resource handler which you can use to patch
-existing themes to replace the jQuery UI icons with [Font Awesome](https://fortawesome.github.io/Font-Awesome/) icons.
+existing themes to replace the [jQuery UI](https://jqueryui.com/) icons with
+[Font Awesome](https://fortawesome.github.io/Font-Awesome/) icons.
 
 ## Installing
 
@@ -45,13 +46,13 @@ Then, in the `faces-config.xml`, add the handler:
 </application>
 ````
 
-You're done. But wait, maybe you need some custom styling? You can append custom CSS to the PrimeFaces
-community theme by adding a context parameter in the `web.xml`:
+You're done. But wait, maybe you need some custom styling? You can append a custom CSS resource by adding a context
+parameter in the `web.xml`:
 
 ````xml
 <context-param>
-	<param-name>org.jepsar.primefaces.theme.APPEND_CSS_FILE</param-name>
-	<param-value>/your/custom.css</param-value>
+	<param-name>org.jepsar.primefaces.theme.APPEND_CSS_RESOURCE</param-name>
+	<param-value>custom.css</param-value>
 </context-param>
 ````
 
