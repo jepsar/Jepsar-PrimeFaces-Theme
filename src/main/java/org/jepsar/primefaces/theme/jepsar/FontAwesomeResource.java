@@ -20,7 +20,7 @@ public class FontAwesomeResource extends AbstractResource
 	/**
 	 * Resource location of the Font Awesome CSS patch.
 	 */
-	private static final String FONT_AWESOME_CSS_RESOURCE = "fontawesome.css";
+	private static final String FONT_AWESOME_CSS_RESOURCE = "/primefaces-jepsar/fontawesome.css";
 
 	/**
 	 * Expression for icon background image.
@@ -62,11 +62,16 @@ public class FontAwesomeResource extends AbstractResource
 		String css = readInputStream(getWrapped().getInputStream());
 		css = css.replaceAll(REGEX_BG_IMG, "");
 		css = css.replaceAll(REGEX_ICON, "");
-		css += readClassResource(FONT_AWESOME_CSS_RESOURCE);
-		if (getAppendCssResource() != null) {
-			css += readInputStream(getHandler().createResource(getAppendCssResource()).getInputStream());
-		}
-		return new ByteArrayInputStream(css.getBytes(getCharset()));
+		StringBuilder sb = new StringBuilder(css);
+
+		// Append FontAwesome CSS
+		Resource resource = getHandler().createResource(FONT_AWESOME_CSS_RESOURCE);
+		sb.append(readInputStream(resource.getInputStream()));
+
+		// Append custom CSS
+		appendCss(sb);
+
+		return new ByteArrayInputStream(sb.toString().getBytes(getCharset()));
 	}
 
 }

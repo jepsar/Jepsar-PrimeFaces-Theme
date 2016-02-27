@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
 import javax.faces.application.ResourceWrapper;
@@ -69,7 +68,27 @@ public abstract class AbstractResource extends ResourceWrapper
 
 
 	/**
-	 * Reads data from input stream and returns it as a string using {@link #charset}.
+	 * If the {@link #PARAM_NAME_APPEND_CSS_RESOURCE} context parameter is set, the contents of that CSS resource
+	 * will be appended to the {@code StringBuilder}.
+	 *
+	 * @param sb
+	 *
+	 * @return Given {@code StringBuilder}
+	 *
+	 * @throws IOException
+	 */
+	protected StringBuilder appendCss(StringBuilder sb) throws IOException
+	{
+		if (appendCssResource != null) {
+			Resource resource = handler.createResource(appendCssResource);
+			sb.append(readInputStream(resource.getInputStream()));
+		}
+		return sb;
+	}
+
+
+	/**
+	 * Reads data from input stream and returns it as a string.
 	 *
 	 * @param inputStream Input stream to read from.
 	 *
@@ -78,22 +97,6 @@ public abstract class AbstractResource extends ResourceWrapper
 	 * @throws IOException
 	 */
 	protected String readInputStream(final InputStream inputStream) throws IOException
-	{
-		return readInputStream(inputStream, charset);
-	}
-
-
-	/**
-	 * Reads data from input stream and returns it as a string.
-	 *
-	 * @param inputStream Input stream to read from.
-	 * @param charset     Charset used to read the input stream.
-	 *
-	 * @return Data read from input stream.
-	 *
-	 * @throws IOException
-	 */
-	protected String readInputStream(final InputStream inputStream, final Charset charset) throws IOException
 	{
 		final char[] buffer = new char[BUFFER_SIZE];
 		final StringBuilder sb = new StringBuilder(BUFFER_SIZE);
@@ -104,22 +107,6 @@ public abstract class AbstractResource extends ResourceWrapper
 			}
 		}
 		return sb.toString();
-	}
-
-
-	/**
-	 * Reads data from resource and returns it as a string using {@link StandardCharsets#UTF_8}.
-	 *
-	 * @param resourceName Resource name used in {@link Class#getResource(java.lang.String) }.
-	 *
-	 * @return Data read from resource name.
-	 *
-	 * @throws IOException
-	 */
-	protected String readClassResource(final String resourceName) throws IOException
-	{
-		InputStream inputStream = getClass().getResourceAsStream(resourceName);
-		return readInputStream(inputStream, StandardCharsets.UTF_8);
 	}
 
 
@@ -168,17 +155,6 @@ public abstract class AbstractResource extends ResourceWrapper
 	public Charset getCharset()
 	{
 		return charset;
-	}
-
-
-	/**
-	 * Returns {@link #appendCssResource name of the CSS resource to append}.
-	 *
-	 * @return {@link #appendCssResource}.
-	 */
-	public String getAppendCssResource()
-	{
-		return appendCssResource;
 	}
 
 }
