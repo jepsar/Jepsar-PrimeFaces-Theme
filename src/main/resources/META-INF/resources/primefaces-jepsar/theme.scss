@@ -1,33 +1,34 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,700,400italic);
 
 // Palette URL: http://paletton.com/#uid=73t1z0kw0w0jyC+oRxVy4oIDfjr */
+// See RgbColor#main to generate colors */
 
-$color-primary-0: #086CA2;	// Main Primary color */
-$color-primary-1: #4E94B9;
-$color-primary-2: #2C7CA7;
-$color-primary-3: #06537D;
-$color-primary-4: #044162;
+$colorPrimary: #086CA2;
+$colorPrimaryLightest: #ADCEE0;
+$colorPrimaryLighter: #599CC0;
+$colorPrimaryDarker: #06496D;
+$colorPrimaryDarkest: #032436;
 
-$color-secondary-1-0: #B90091;	// Main Secondary color (1) */
-$color-secondary-1-1: #CB4FB0;
-$color-secondary-1-2: #BE2A9D;
-$color-secondary-1-3: #8F0070;
-$color-secondary-1-4: #710058;
+$colorSecondary: #B90091;
+$colorSecondaryLightest: #E7AADA;
+$colorSecondaryLighter: #D054B5;
+$colorSecondaryDarker: #7C0062;
+$colorSecondaryDarkest: #3E0030;
 
-$color-complement-0: #FF8B00;	// Main Complement color */
-$color-complement-1: #FFB863;
-$color-complement-2: #FFA539;
-$color-complement-3: #C56B00;
-$color-complement-4: #9B5400;
+$colorComplementary: #FF8B00;
+$colorComplementaryLightest: #FFD8AA;
+$colorComplementaryLighter: #FFB154;
+$colorComplementaryDarker: #AB5E00;
+$colorComplementaryDarkest: #552E00;
 
 
-$colorsBody: $color-primary-4, #fff;
-$colorLink: $color-secondary-1-0;
-$colorLinkVisited: $color-secondary-1-4;
-$colorPanel: #f8f8f8;
-$colorsPrimary: #fff, $color-primary-0;
-$colorsSecondary: #fff, $color-secondary-1-0;
-$colorsComplementary: #fff, $color-complement-0;
+$colorsBody: $colorPrimaryDarkest, #FFF;
+$colorLink: $colorSecondary;
+$colorLinkVisited: $colorSecondaryDarkest;
+$colorPanel: #F4F4F4;
+$colorsPrimary: #FFF, $colorPrimary;
+$colorsSecondary: #FFF, $colorSecondary;
+$colorsComplementary: #FFF, $colorComplementary;
 $borderRadiusNone: 0;
 $borderRadius: unset;
 $inputButtonHeight: 2em;
@@ -56,22 +57,27 @@ $inputButtonHeight: 2em;
 
 
 body { @include colors($colorsBody...); line-height: 1.5em; }
-body, input, button { font-family: Roboto, sans-serif; font-size: 1em; }
+body, input, button { font-family: 'Titillium Web', sans-serif; font-size: 1em; }
+
+h1, h2, h3, h4, h5, h6 { color: $colorPrimary; }
+
 a { color: $colorLink; }
 a:visited { color: $colorLinkVisited; }
+
+
 
 html .ui-corner-all { @include borderRadius($borderRadiusNone); }
 html .ui-shadow { box-shadow: 0 0 8px rgba(0,0,0,.4); }
 
-html .ui-state-disabled { opacity: .25; }
-html .ui-state-focus { box-shadow: 0px 0px 4px $color-secondary-1-0; }
+html .ui-state-disabled { color: $colorPrimaryLightest; }
+html .ui-state-focus { box-shadow: 0px 0px 4px $colorPrimary; }
 
 
 html .ui-inputfield {
-	height: $inputButtonHeight;
-	color: nth($colorsBody, 1); @include border($color-primary-1); box-sizing: border-box;
+	height: $inputButtonHeight; padding: 0 0.25em;
+	color: nth($colorsBody, 1); @include border($colorPrimary); box-sizing: border-box;
 }
-html .ui-inputfield::-webkit-input-placeholder { color: $color-primary-1; }
+html .ui-inputfield::-webkit-input-placeholder { color: $colorPrimaryLightest; }
 
 
 // Calendar */
@@ -96,6 +102,9 @@ html .ui-chkbox .ui-chkbox-box, html .ui-radiobutton .ui-radiobutton-box {
 
 	.ui-icon { line-height: $radioCheckSize; width: 100%; height: 100%; }
 }
+html .ui-chkbox .ui-chkbox-box.ui-state-disabled, html .ui-radiobutton .ui-radiobutton-box.ui-state-disabled {
+	background: $colorPrimaryLightest;
+}
 html .ui-chkbox .ui-chkbox-box {
 	@include borderRadius($borderRadiusNone);
 }
@@ -106,8 +115,11 @@ html .ui-chkbox .ui-chkbox-box, html .ui-radiobutton .ui-radiobutton-box {
 	span:before { display: block; }
 }
 html .ui-radiobutton-icon { margin: 0; }
+.ui-icon-blank:before { content: '\f00c'; opacity: 0; }
+.ui-radiobutton-icon.ui-icon-bullet:before { content: '\f00c'; }
 
 
+// Button */
 html .ui-button {
 	margin: 0; height: $inputButtonHeight; @include colors($colorsPrimary...); border: 0;
 }
@@ -118,13 +130,46 @@ html .ui-button-icon-only .ui-icon {
 }
 
 
+// Data table */
+.ui-datatable {
+	.ui-sortable-column-icon { padding-right: .1em; }
+}
+html {
+	.ui-datatable {
+		thead th, tbody td, tfoot td, tfoot th { border: 0; }
+		thead th, tfoot th {
+			position: relative; padding: .25em .5em; @include colors($colorsPrimary...);
+			text-align: left; vertical-align: top;
+		}
+		thead th span { float: left; }
+		.ui-sortable-column-icon { margin: 0 .5em; color: $colorPrimaryLighter; }
+		.ui-column-filter.ui-inputfield { width: 100%; border: 0; }
+		.ui-datatable-odd { background: $colorPanel; }
+		tbody {
+			.ui-state-highlight { background: $colorPrimaryLightest; }
+			.ui-state-hover { background: $colorComplementary; }
+		}
+	}
+}
+
+.ui-icon-carat-2-n-s.ui-icon-triangle-1-n:before { content: "\f0de"; }
+.ui-icon-carat-2-n-s.ui-icon-triangle-1-s:before { content: "\f0dd"; }
+
+.ui-paginator > span > span { display: none; }
+.ui-paginator-first:before { content: "\f049"; }
+.ui-paginator-prev:before { content: "\f048"; }
+.ui-paginator-next:before { content: "\f051"; }
+.ui-paginator-last:before { content: "\f050"; }
+.ui-paginator {
+	.ui-state-active { background: $colorPrimaryLightest; }
+}
+
+
 // Icons */
 html .ui-icon { text-indent: 0; }
-.ui-icon:before { font-family: FontAwesome; }
+.ui-icon:before, .ui-paginator > span:before,
+html .ui-datepicker .ui-datepicker-prev,
+html .ui-datepicker .ui-datepicker-next
+{ font-family: FontAwesome; }
 
-.ui-icon-blank:before { content: '\f00c'; opacity: 0; }
-.ui-icon-check:before { content: '\f00c'; }
-.ui-icon-bullet:before { content: '\f00c'; }
-.ui-icon-calendar:before { content: '\f133'; }
-.ui-icon-circle-triangle-w:before { content: '\f0d9'; }
-.ui-icon-circle-triangle-e:before { content: '\f0da'; }
+@import 'iconmapping.scss';
