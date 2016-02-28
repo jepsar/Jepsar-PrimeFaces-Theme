@@ -6,8 +6,8 @@ Having worked with [PrimeFaces](http://primefaces.org/) for a while I'm increasi
 * The CSS is overly complicated
 * The icons are bitmaps
 
-So I decided to create my own theme. While doing so I also came up with a resource handler which you can use to patch
-existing themes to replace the [jQuery UI](https://jqueryui.com/) icons with
+So I decided to create my own free PrimeFaces theme. While doing so I also came up with a resource handler which you
+can use to patch existing themes to replace the [jQuery UI](https://jqueryui.com/) icons with
 [Font Awesome](https://fortawesome.github.io/Font-Awesome/) icons.
 
 ## Installing
@@ -81,3 +81,11 @@ And the context parameter in the `web.xml`:
 ### Theme
 
 The theme is still work in progress. At this moment it is not ready to share yet, but it will come soon.
+
+### Icon mapping only
+
+If you only want to use the jQuery UI to FontAwesome icon mapping:
+
+````xhtml
+<h:outputStylesheet name="/primefaces-jepsar/iconmapping.css"/>
+````
