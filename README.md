@@ -28,7 +28,7 @@ it to your local repository (`mvn clean install`). Then you can add this depende
 <dependency>
 	<groupId>com.github.jepsar</groupId>
 	<artifactId>primefaces-theme-jepsar</artifactId>
-	<version>0.9</version>
+	<version>0.9.1</version>
 </dependency>
 ````
 
