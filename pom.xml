@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.jepsar</groupId>
 	<artifactId>primefaces-theme-jepsar</artifactId>
-	<version>0.9.1</version>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Jepsar PrimeFaces Theme</name>
