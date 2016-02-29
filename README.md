@@ -26,7 +26,7 @@ it to your local repository (`mvn clean install`). Then you can add this depende
 
 ````xml
 <dependency>
-	<groupId>org.jepsar</groupId>
+	<groupId>com.github.jepsar</groupId>
 	<artifactId>primefaces-theme-jepsar</artifactId>
 	<version>0.9</version>
 </dependency>
