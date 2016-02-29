@@ -10,7 +10,7 @@ So I decided to create my own free PrimeFaces theme. While doing so I also came 
 can use to patch existing themes to replace the [jQuery UI](https://jqueryui.com/) icons with
 [Font Awesome](https://fortawesome.github.io/Font-Awesome/) icons.
 
-## Installing
+## Usage
 
 Make sure you've set the FontAwesome context parameter in the `web.xml`:
 
@@ -21,8 +21,7 @@ Make sure you've set the FontAwesome context parameter in the `web.xml`:
 </context-param>
 ````
 
-My next to do is getting this library in the Maven central repository. Until it's there you could download and install
-it to your local repository (`mvn clean install`). Then you can add this dependency to your `pom.xml`:
+Add this dependency to your `pom.xml`:
 
 ````xml
 <dependency>
@@ -32,7 +31,7 @@ it to your local repository (`mvn clean install`). Then you can add this depende
 </dependency>
 ````
 
-### `FontAwesomeResourceHandler`
+## `FontAwesomeResourceHandler`
 
 This resource handler will strip the jQuery UI icons from the community PrimeFaces themes and adds FontAwesome rules to
 the theme. You can use it on existing applications without needing to convert all XHTML (for example `ui-icon-gear` to
@@ -56,10 +55,11 @@ parameter in the `web.xml`:
 </context-param>
 ````
 
-### `NoThemeResourceHandler`
+## `NoThemeResourceHandler`
 
 If you want to replace the PrimeFaces theme with your own CSS, but don't want to build a theme JAR you can use this
-resource handler in combination with the custom CSS resource context parameter.
+resource handler in combination with the custom CSS resource context parameter. I've found this handler to be useful
+when developing a theme.
 
 Add the handler in the `faces-config.xml`:
 
@@ -78,11 +78,11 @@ And the context parameter in the `web.xml`:
 </context-param>
 ````
 
-### Theme
+## Theme
 
 The theme is still work in progress. At this moment it is not ready to share yet, but it will come soon.
 
-### Icon mapping only
+## Icon mapping only
 
 If you only want to use the jQuery UI to FontAwesome icon mapping:
 
