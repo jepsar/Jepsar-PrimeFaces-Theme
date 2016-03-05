@@ -6,33 +6,34 @@ import javax.faces.application.ResourceHandler;
 
 
 /**
- * Resource handler to detect and return a {@link FontAwesomeResource} if a resource
+ * Resource handler to detect and return a {@link ReplaceResource} if a resource
  * {@link #isPrimeFacesTheme(java.lang.String, java.lang.String) is a PrimeFaces theme}.
  *
  * @author Jasper de Vries <jepsar@gmail.com>
+ * @since 1.0
  */
-public class FontAwesomeResourceHandler extends AbstractResourceHandler
+public class ReplaceResourceHandler extends AbstractResourceHandler
 {
 
 	/**
 	 *
 	 * @param wrapped Wrapped resource handler.
 	 */
-	public FontAwesomeResourceHandler(ResourceHandler wrapped)
+	public ReplaceResourceHandler(ResourceHandler wrapped)
 	{
 		super(wrapped);
 	}
 
 
 	/**
-	 * Returns a {@link FontAwesomeResource} if the resource
+	 * Returns a {@link ReplaceResource} if the resource
 	 * {@link #isPrimeFacesTheme(java.lang.String, java.lang.String) is a PrimeFaces theme} else the
 	 * {@link #getWrapped() wrapped handler} will take care of creating a resource.
 	 *
 	 * @param resourceName Resource name.
 	 * @param libraryName  Library name.
 	 *
-	 * @return {@link FontAwesomeResource} if the resource
+	 * @return {@link ReplaceResource} if the resource
 	 *         {@link #isPrimeFacesTheme(java.lang.String, java.lang.String) is a PrimeFaces theme} else the
 	 *         {@link #getWrapped() wrapped handler} will take care of creating a resource.
 	 */
@@ -40,12 +41,13 @@ public class FontAwesomeResourceHandler extends AbstractResourceHandler
 	public Resource createResource(String resourceName, String libraryName)
 	{
 		if (isPrimeFacesTheme(resourceName, libraryName)) {
-			return new FontAwesomeResource(super.createResource(resourceName, libraryName), this);
+			return new ReplaceResource(super.createResource(resourceName, libraryName), this);
 		}
 		else {
 			return getWrapped().createResource(resourceName, libraryName);
 		}
 	}
+
 
 }
 

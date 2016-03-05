@@ -39,9 +39,8 @@ public class NoThemeResourceHandler extends AbstractResourceHandler
 	@Override
 	public Resource createResource(String resourceName, String libraryName)
 	{
-		Resource resource = super.createResource(resourceName, libraryName);
 		if (isPrimeFacesTheme(resourceName, libraryName)) {
-			return new NoThemeResource(resource, this);
+			return new NoThemeResource(super.createResource(resourceName, libraryName), this);
 		}
 		else {
 			return getWrapped().createResource(resourceName, libraryName);

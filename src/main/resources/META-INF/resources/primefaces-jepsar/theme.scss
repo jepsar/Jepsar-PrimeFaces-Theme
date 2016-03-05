@@ -29,7 +29,6 @@ $colorPanel: #F4F4F4;
 $colorsPrimary: #FFF, $colorPrimary;
 $colorsSecondary: #FFF, $colorSecondary;
 $colorsComplementary: #FFF, $colorComplementary;
-$borderRadiusNone: 0;
 $borderRadius: unset;
 $inputButtonHeight: 2em;
 
@@ -57,7 +56,7 @@ $inputButtonHeight: 2em;
 
 
 body { @include colors($colorsBody...); line-height: 1.5em; }
-body, input, button { font-family: 'Titillium Web', sans-serif; font-size: 1em; }
+body, input, button { font-family: 'Titillium Web',sans-serif; font-size: 1em; }
 
 h1, h2, h3, h4, h5, h6 { color: $colorPrimary; }
 
@@ -66,7 +65,7 @@ a:visited { color: $colorLinkVisited; }
 
 
 
-html .ui-corner-all { @include borderRadius($borderRadiusNone); }
+html .ui-corner-all { @include borderRadius($borderRadius); }
 html .ui-shadow { box-shadow: 0 0 8px rgba(0,0,0,.4); }
 
 html .ui-state-disabled { color: $colorPrimaryLightest; }
@@ -81,7 +80,7 @@ html .ui-inputfield::-webkit-input-placeholder { color: $colorPrimaryLightest; }
 
 
 // Calendar */
-.ui-datepicker-trigger { height: $inputButtonHeight; }
+.ui-calendar .ui-inputfield { float: left; }
 .ui-datepicker { background: $colorPanel; }
 html .ui-datepicker .ui-datepicker-prev,
 html .ui-datepicker .ui-datepicker-next { font-family: FontAwesome; text-align: center; @include clickable(); }
@@ -106,7 +105,7 @@ html .ui-chkbox .ui-chkbox-box.ui-state-disabled, html .ui-radiobutton .ui-radio
 	background: $colorPrimaryLightest;
 }
 html .ui-chkbox .ui-chkbox-box {
-	@include borderRadius($borderRadiusNone);
+	@include borderRadius($borderRadius);
 }
 html .ui-radiobutton .ui-radiobutton-box {
 	@include borderRadius($radioCheckSize);
@@ -142,7 +141,7 @@ html {
 			text-align: left; vertical-align: top;
 		}
 		thead th span { float: left; }
-		.ui-sortable-column-icon { margin: 0 .5em; color: $colorPrimaryLighter; }
+		.ui-sortable-column-icon { margin: 0 .5em; }
 		.ui-column-filter.ui-inputfield { width: 100%; border: 0; }
 		.ui-datatable-odd { background: $colorPanel; }
 		tbody {
