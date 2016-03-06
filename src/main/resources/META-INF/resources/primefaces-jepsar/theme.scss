@@ -66,7 +66,7 @@ a:visited { color: $colorLinkVisited; }
 
 
 html .ui-corner-all { @include borderRadius($borderRadius); }
-html .ui-shadow { box-shadow: 0 0 8px rgba(0,0,0,.4); }
+html .ui-shadow { background: $colorPanel; box-shadow: 0 0 8px rgba(0,0,0,.4); }
 
 html .ui-state-disabled { color: $colorPrimaryLightest; }
 html .ui-state-focus { box-shadow: 0px 0px 4px $colorPrimary; }
@@ -112,23 +112,22 @@ html .ui-button {
 .ui-button.secondary { @include colors($colorsSecondary...); }
 .ui-button.complementary { @include colors($colorsComplementary...); }
 html {
+	.ui-button-icon-only .ui-icon.fa, .ui-button-text-icon-left .ui-icon.fa, .ui-button-text-icon-right .ui-icon.fa,
+	.ui-button-icon-only .ui-icon, .ui-button-text-icon-left .ui-icon, .ui-button-text-icon-right .ui-icon {
+		margin: 0; top: 0; line-height: $inputButtonHeight; width: 1.5em;
+	}
 	.ui-button-icon-only .ui-icon {
 		position: absolute; left: 0; top: 0; margin: 0; width: 100%; text-align: center;
 	}
-	.ui-button-icon-only .ui-icon.fa, .ui-button-text-icon-left .ui-icon.fa, .ui-button-text-icon-right .ui-icon.fa,
-	.ui-button-icon-only .ui-icon, .ui-button-text-icon-left .ui-icon, .ui-button-text-icon-right .ui-icon {
-		margin: 0; top: 0; line-height: $inputButtonHeight;
-	}
 	.ui-button-text { line-height: $inputButtonHeight; }
 	.ui-button-text-only .ui-button-text { padding: 0 1em; }
-	.ui-button-text-icon-left .ui-button-text { padding: 0 1em 0 2.1em; }
-	.ui-button-text-icon-right .ui-button-text { padding: 0 2.1em 0 1em; }
+	.ui-button-text-icon-left .ui-button-text { padding: 0 1em 0 2.3em; }
+	.ui-button-text-icon-right .ui-button-text { padding: 0 2.3em 0 1em; }
 }
 
 
 // Calendar */
 .ui-calendar .ui-inputfield { float: left; }
-.ui-datepicker { background: $colorPanel; }
 html {
 	.ui-datepicker .ui-datepicker-prev,
 	.ui-datepicker .ui-datepicker-next { font-family: FontAwesome; text-align: center; @include clickable(); }
@@ -168,11 +167,23 @@ html {
 		}
 	}
 }
-
-
 .ui-paginator {
 	.ui-state-active { background: $colorPrimaryLightest; }
 }
+
+
+// Growl */
+html {
+	.ui-growl-item-container { @include colors($colorsSecondary...); opacity: 1; box-shadow: none; }
+	.ui-growl-image {
+		background: none; font-family: FontAwesome; font-size: 2em; width: 1em; margin-top: .2em; text-align: center;
+	}
+	.ui-growl-icon-close { top: .2em; right: .5em; }
+}
+.ui-growl-image.ui-growl-image-fatal:before { content: "\f1e2"; }
+.ui-growl-image.ui-growl-image-error:before { content: "\f0e7"; }
+.ui-growl-image.ui-growl-image-warn:before { content: "\f071"; }
+.ui-growl-image.ui-growl-image-info:before { content: "\f05a"; }
 
 
 // Icons */
