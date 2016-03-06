@@ -79,19 +79,6 @@ html .ui-inputfield {
 html .ui-inputfield::-webkit-input-placeholder { color: $colorPrimaryLightest; }
 
 
-// Calendar */
-.ui-calendar .ui-inputfield { float: left; }
-.ui-datepicker { background: $colorPanel; }
-html .ui-datepicker .ui-datepicker-prev,
-html .ui-datepicker .ui-datepicker-next { font-family: FontAwesome; text-align: center; @include clickable(); }
-html .ui-datepicker .ui-datepicker-prev:before { content: '\f0d9'; }
-html .ui-datepicker .ui-datepicker-next:before { content: '\f0da'; }
-html .ui-datepicker .ui-datepicker-prev span,
-html .ui-datepicker .ui-datepicker-next span { display: none; }
-html .ui-datepicker .ui-datepicker-prev-hover { top: 2px; left: 2px; }
-html .ui-datepicker .ui-datepicker-next-hover { top: 2px; right: 2px; }
-
-
 // Checkbox and radio */
 $radioCheckSize: 1.2em;
 html .ui-chkbox .ui-chkbox-box, html .ui-radiobutton .ui-radiobutton-box {
@@ -124,8 +111,39 @@ html .ui-button {
 }
 .ui-button.secondary { @include colors($colorsSecondary...); }
 .ui-button.complementary { @include colors($colorsComplementary...); }
-html .ui-button-icon-only .ui-icon {
-	line-height: $inputButtonHeight; position: absolute; left: 0; top: 0; margin: 0; width: 100%; text-align: center;
+html {
+	.ui-button-icon-only .ui-icon {
+		position: absolute; left: 0; top: 0; margin: 0; width: 100%; text-align: center;
+	}
+	.ui-button-icon-only .ui-icon.fa, .ui-button-text-icon-left .ui-icon.fa, .ui-button-text-icon-right .ui-icon.fa,
+	.ui-button-icon-only .ui-icon, .ui-button-text-icon-left .ui-icon, .ui-button-text-icon-right .ui-icon {
+		margin: 0; top: 0; line-height: $inputButtonHeight;
+	}
+	.ui-button-text { line-height: $inputButtonHeight; }
+	.ui-button-text-only .ui-button-text { padding: 0 1em; }
+	.ui-button-text-icon-left .ui-button-text { padding: 0 1em 0 2.1em; }
+	.ui-button-text-icon-right .ui-button-text { padding: 0 2.1em 0 1em; }
+}
+
+
+// Calendar */
+.ui-calendar .ui-inputfield { float: left; }
+.ui-datepicker { background: $colorPanel; }
+html {
+	.ui-datepicker .ui-datepicker-prev,
+	.ui-datepicker .ui-datepicker-next { font-family: FontAwesome; text-align: center; @include clickable(); }
+	.ui-datepicker .ui-datepicker-prev span,
+	.ui-datepicker .ui-datepicker-next span { display: none; }
+	.ui-datepicker .ui-datepicker-prev-hover { top: 2px; left: 2px; }
+	.ui-datepicker .ui-datepicker-next-hover { top: 2px; right: 2px; }
+	.ui-timepicker-div dl dd { margin-top: 8px; }
+	.ui-timepicker-div dl dd.ui_tpicker_time { margin-top: 0; }
+}
+
+// Slider */
+html {
+	.ui-slider { background: $colorPrimaryLightest; }
+	.ui-slider-handle { background: $colorPrimary; @include borderRadius($radioCheckSize); }
 }
 
 
@@ -151,14 +169,7 @@ html {
 	}
 }
 
-.ui-icon-carat-2-n-s.ui-icon-triangle-1-n:before { content: "\f0de"; }
-.ui-icon-carat-2-n-s.ui-icon-triangle-1-s:before { content: "\f0dd"; }
 
-.ui-paginator > span > span { display: none; }
-.ui-paginator-first:before { content: "\f049"; }
-.ui-paginator-prev:before { content: "\f048"; }
-.ui-paginator-next:before { content: "\f051"; }
-.ui-paginator-last:before { content: "\f050"; }
 .ui-paginator {
 	.ui-state-active { background: $colorPrimaryLightest; }
 }
