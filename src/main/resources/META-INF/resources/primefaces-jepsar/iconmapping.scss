@@ -172,3 +172,24 @@
 .ui-icon-grip-solid-horizontal:before { content: "\f141"; }
 .ui-icon-gripsmall-diagonal-se:before { content: "\f141"; }
 .ui-icon-grip-diagonal-se:before { content: "\f141"; }
+
+.ui-icon-carat-2-n-s.ui-icon-triangle-1-n:before { content: "\f0de"; }
+.ui-icon-carat-2-n-s.ui-icon-triangle-1-s:before { content: "\f0dd"; }
+
+.ui-paginator > span > span { display: none; }
+.ui-paginator-first:before { content: "\f049"; }
+.ui-paginator-prev:before { content: "\f048"; }
+.ui-paginator-next:before { content: "\f051"; }
+.ui-paginator-last:before { content: "\f050"; }
+
+.ui-fileupload .ui-icon-arrowreturnthick-1-n:before { content: "\f093"; }
+
+.ui-datepicker .ui-datepicker-prev:before { content: "\f137"; }
+.ui-datepicker .ui-datepicker-next:before { content: "\f138"; }
+
+.ui-picklist {
+	.ui-icon-arrow-1-e:before { content: "\f105"; }
+	.ui-icon-arrowstop-1-e:before { content: "\f101"; }
+	.ui-icon-arrow-1-w:before { content: "\f104"; }
+	.ui-icon-arrowstop-1-w:before { content: "\f100"; }
+}
