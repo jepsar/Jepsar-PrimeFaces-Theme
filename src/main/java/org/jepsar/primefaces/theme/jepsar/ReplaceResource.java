@@ -101,7 +101,7 @@ public class ReplaceResource extends AbstractResource
 
 	/**
 	 * The context parameter name for values to search for. Setting it is optional, doing so will override
-	 * {@link #FIND_VALUES}.
+	 * {@link #DEFAULT_FIND_VALUES}.
 	 */
 	public static final String PARAM_NAME_FIND_VALUES = "org.jepsar.primefaces.theme.FIND_VALUES";
 
