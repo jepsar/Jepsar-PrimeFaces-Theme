@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,700,400italic);
 
-// Palette URL: http://paletton.com/#uid=73t1z0kw0w0jyC+oRxVy4oIDfjr */
-// See RgbColor#main to generate colors */
+@import 'iconmapping.scss';
 
 $colorPrimary: #086CA2;
 $colorPrimaryLightest: #ADCEE0;
@@ -29,7 +28,7 @@ $colorPanel: #F4F4F4;
 $colorsPrimary: #FFF, $colorPrimary;
 $colorsSecondary: #FFF, $colorSecondary;
 $colorsComplementary: #FFF, $colorComplementary;
-$borderRadius: unset;
+$borderRadius: 3.001px;
 $inputButtonHeight: 2em;
 
 
@@ -46,7 +45,7 @@ $inputButtonHeight: 2em;
 
 @mixin border($color)
 {
-	border: 1px solid $color;
+	border: 2px solid $color; @include borderRadius($borderRadius);
 }
 
 @mixin clickable()
@@ -55,7 +54,7 @@ $inputButtonHeight: 2em;
 }
 
 
-body { @include colors($colorsBody...); line-height: 1.5em; }
+body { @include colors($colorsBody...); line-height: 1.4em; }
 body, input, button { font-family: 'Titillium Web',sans-serif; font-size: 1em; }
 
 h1, h2, h3, h4, h5, h6 { color: $colorPrimary; }
@@ -64,16 +63,20 @@ a { color: $colorLink; }
 a:visited { color: $colorLinkVisited; }
 
 
-
-html .ui-corner-all { @include borderRadius($borderRadius); }
+.ui-widget-content { @include border($colorPrimary); }
+.ui-corner-all { @include borderRadius($borderRadius); }
 html .ui-shadow { background: $colorPanel; box-shadow: 0 0 8px rgba(0,0,0,.4); }
 
-html .ui-state-disabled { color: $colorPrimaryLightest; }
-html .ui-state-focus { box-shadow: 0px 0px 4px $colorPrimary; }
-
+.ui-state-disabled { color: $colorPrimaryLightest; }
+.ui-state-focus { box-shadow: 0px 0px 4px $colorPrimary; }
+.ui-state-highlight { background: $colorPrimaryLightest; }
+.ui-state-hover { background: $colorComplementary; }
+.ui-inputfield.ui-state-hover, .ui-selectonemenu.ui-state-hover, .ui-selectonemenu-trigger.ui-state-hover {
+	background: nth($colorsBody, 2);
+}
 
 html .ui-inputfield {
-	height: $inputButtonHeight; padding: 0 0.25em;
+	height: $inputButtonHeight; line-height: $inputButtonHeight; padding: 0 0.25em;
 	color: nth($colorsBody, 1); @include border($colorPrimary); box-sizing: border-box;
 }
 html .ui-inputfield::-webkit-input-placeholder { color: $colorPrimaryLightest; }
@@ -101,8 +104,18 @@ html .ui-chkbox .ui-chkbox-box, html .ui-radiobutton .ui-radiobutton-box {
 	span:before { display: block; }
 }
 html .ui-radiobutton-icon { margin: 0; }
-.ui-icon-blank:before { content: '\f00c'; opacity: 0; }
-.ui-radiobutton-icon.ui-icon-bullet:before { content: '\f00c'; }
+.ui-icon-blank:before { content: '\f061'; opacity: 0; }
+.ui-radiobutton-icon.ui-icon-bullet:before, .ui-chkbox-icon.ui-icon-check:before { content: '\f061'; }
+
+
+// Dropdown */
+.ui-selectonemenu {
+	@include border($colorPrimary);
+
+	.ui-icon-triangle-1-s:before { content: "\f107"; }
+	.ui-selectonemenu-trigger .ui-icon { width: 100%; text-align: center; }
+}
+html .ui-selectonemenu .ui-selectonemenu-trigger { width: 1.5em; box-sizing: border-box; }
 
 
 // Button */
@@ -129,6 +142,7 @@ html {
 // Calendar */
 .ui-calendar .ui-inputfield { float: left; }
 html {
+	.ui-datepicker-trigger { margin-left: -4px; }
 	.ui-datepicker .ui-datepicker-prev,
 	.ui-datepicker .ui-datepicker-next { font-family: FontAwesome; text-align: center; @include clickable(); }
 	.ui-datepicker .ui-datepicker-prev span,
@@ -147,8 +161,10 @@ html {
 
 
 // Data table */
+.ui-datatable-tablewrapper { @include border($colorPrimary); }
 .ui-datatable {
 	.ui-sortable-column-icon { padding-right: .1em; }
+	.ui-widget-content { border: 0; }
 }
 html {
 	.ui-datatable {
@@ -161,10 +177,6 @@ html {
 		.ui-sortable-column-icon { margin: 0 .5em; }
 		.ui-column-filter.ui-inputfield { width: 100%; border: 0; }
 		.ui-datatable-odd { background: $colorPanel; }
-		tbody {
-			.ui-state-highlight { background: $colorPrimaryLightest; }
-			.ui-state-hover { background: $colorComplementary; }
-		}
 	}
 }
 .ui-paginator {
@@ -192,5 +204,3 @@ html .ui-icon { text-indent: 0; }
 html .ui-datepicker .ui-datepicker-prev,
 html .ui-datepicker .ui-datepicker-next
 { font-family: FontAwesome; }
-
-@import 'iconmapping.scss';
