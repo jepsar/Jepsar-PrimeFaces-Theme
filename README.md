@@ -1,6 +1,6 @@
 # Jepsar PrimeFaces Theme
 
-Having worked with [PrimeFaces](http://primefaces.org/) for a while I'm increasingly annoiyed by it's community themes:
+Having worked with [PrimeFaces](http://primefaces.org/) for a while I'm increasingly annoiyed by it's community themes (this was before PrimeFaces 6 with the Omega theme was released):
 
 * They look outdated
 * The CSS is overly complicated
