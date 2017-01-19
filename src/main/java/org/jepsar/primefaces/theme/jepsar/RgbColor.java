@@ -21,6 +21,11 @@ public class RgbColor implements Serializable
 	private static final String HEX_COLOR_PREFIX = "#";
 
 	/**
+	 * Hex color string.
+	 */
+	private static final String HEX_COLOR = "#%02X%02X%02X";
+
+	/**
 	 * Expression to match a hex color without the {@link #HEX_COLOR_PREFIX}.
 	 */
 	private static final String HEX_COLOR_REGEX = "^[0-9A-F]{6}$";
@@ -141,19 +146,6 @@ public class RgbColor implements Serializable
 
 
 	/**
-	 * Convert integer to upper case hex string padded with a zero if integer is under 16.
-	 *
-	 * @param integer Integer value.
-	 *
-	 * @return Hex string.
-	 */
-	private String intToHex(int integer)
-	{
-		return (integer < 16 ? "0" : "") + Integer.toHexString(integer).toUpperCase();
-	}
-
-
-	/**
 	 * Returns color as upper case hex string starting with {@link #HEX_COLOR_PREFIX}.
 	 *
 	 * @return Color as upper case hex string.
@@ -161,7 +153,7 @@ public class RgbColor implements Serializable
 	@Override
 	public String toString()
 	{
-		return HEX_COLOR_PREFIX + intToHex(r) + intToHex(g) + intToHex(b);
+		return String.format(HEX_COLOR, r, g, b);
 	}
 
 }
