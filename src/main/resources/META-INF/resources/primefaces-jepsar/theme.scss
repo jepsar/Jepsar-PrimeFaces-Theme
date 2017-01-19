@@ -55,7 +55,7 @@ $inputButtonHeight: 2em;
 
 
 body { @include colors($colorsBody...); line-height: 1.4em; }
-body, input, button { font-family: 'Titillium Web',sans-serif; font-size: 1em; }
+body, input, button, textarea { font-family: 'Titillium Web',sans-serif; font-size: 1em; }
 
 h1, h2, h3, h4, h5, h6 { color: $colorPrimary; }
 
@@ -63,7 +63,7 @@ a { color: $colorLink; }
 a:visited { color: $colorLinkVisited; }
 
 
-.ui-widget-content { @include border($colorPrimary); }
+.ui-widget-content { @include border($colorPrimary); background: nth($colorsBody, 2); }
 .ui-corner-all { @include borderRadius($borderRadius); }
 html .ui-shadow { background: $colorPanel; box-shadow: 0 0 8px rgba(0,0,0,.4); }
 
@@ -74,6 +74,12 @@ html .ui-shadow { background: $colorPanel; box-shadow: 0 0 8px rgba(0,0,0,.4); }
 .ui-inputfield.ui-state-hover, .ui-selectonemenu.ui-state-hover, .ui-selectonemenu-trigger.ui-state-hover {
 	background: nth($colorsBody, 2);
 }
+.ui-button.ui-state-active { background: $colorSecondary; }
+
+.ui-corner-left { border-radius: $borderRadius 0 0 $borderRadius; }
+.ui-corner-right { border-radius: 0 $borderRadius $borderRadius 0; }
+.ui-corner-tr { border-radius: 0 $borderRadius 0 0; }
+.ui-corner-br { border-radius: 0 0 0 $borderRadius 0; }
 
 html .ui-inputfield {
 	height: $inputButtonHeight; line-height: $inputButtonHeight; padding: 0 0.25em;
@@ -110,7 +116,7 @@ html .ui-radiobutton-icon { margin: 0; }
 
 // Dropdown */
 .ui-selectonemenu {
-	@include border($colorPrimary);
+	@include border($colorPrimary); background: nth($colorsBody, 2);
 
 	.ui-icon-triangle-1-s:before { content: "\f107"; }
 	.ui-selectonemenu-trigger .ui-icon { width: 100%; text-align: center; }
@@ -132,7 +138,7 @@ html {
 	.ui-button-icon-only .ui-icon {
 		position: absolute; left: 0; top: 0; margin: 0; width: 100%; text-align: center;
 	}
-	.ui-button-text { line-height: $inputButtonHeight; }
+	.ui-button .ui-button-text { line-height: $inputButtonHeight; }
 	.ui-button-text-only .ui-button-text { padding: 0 1em; }
 	.ui-button-text-icon-left .ui-button-text { padding: 0 1em 0 2.3em; }
 	.ui-button-text-icon-right .ui-button-text { padding: 0 2.3em 0 1em; }
@@ -153,10 +159,19 @@ html {
 	.ui-timepicker-div dl dd.ui_tpicker_time { margin-top: 0; }
 }
 
+
+// Spinner */
+html .ui-spinner-input { padding-right: 20px; }
+
+
 // Slider */
 html {
 	.ui-slider { background: $colorPrimaryLightest; }
-	.ui-slider-handle { background: $colorPrimary; @include borderRadius($radioCheckSize); }
+	.ui-slider-handle { width: $radioCheckSize; height: $radioCheckSize; background: $colorPrimary; }
+	.ui-slider-horizontal { height: $radioCheckSize; border: 0; }
+	.ui-slider-vertical { width: $radioCheckSize; border: 0; }
+	.ui-slider-horizontal .ui-slider-handle { top: 0; }
+	.ui-slider-vertical .ui-slider-handle { left: 0; }
 }
 
 
