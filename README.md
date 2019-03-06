@@ -1,5 +1,7 @@
 # Jepsar PrimeFaces Theme
 
+**Note:** PrimeFaces 7 resolved the issues that made me create this project. If you are using PF 7 don't bother to use this.
+
 Having worked with [PrimeFaces](http://primefaces.org/) for a while I'm increasingly annoiyed by it's community themes (this was before PrimeFaces 6 with the Omega theme was released):
 
 * They look outdated
