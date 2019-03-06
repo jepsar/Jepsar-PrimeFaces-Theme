@@ -2,16 +2,6 @@
 
 **Note:** PrimeFaces 7 resolved the issues that made me create this project. If you are using PF 7 don't bother to use this.
 
-Having worked with [PrimeFaces](http://primefaces.org/) for a while I'm increasingly annoiyed by it's community themes (this was before PrimeFaces 6 with the Omega theme was released):
-
-* They look outdated
-* The CSS is overly complicated
-* The icons are bitmaps
-
-So I decided to create my own free PrimeFaces theme. While doing so I also came up with a resource handler which you
-can use to patch existing themes to replace the [jQuery UI](https://jqueryui.com/) icons with
-[Font Awesome](https://fortawesome.github.io/Font-Awesome/) icons.
-
 ## Usage
 
 Make sure you've set the FontAwesome context parameter in the `web.xml`:
